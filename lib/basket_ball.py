@@ -182,3 +182,23 @@ def game_dict():
             ]
         }
     }
+
+##using a filter function per: https://learning.flatironschool.com/courses/8276/pages/decorators-2?module_item_id=728934
+
+def decorator(func):
+    def wrapper(player_name,filter):
+        dict = game_dict()
+        for team in dict:
+            player = [player.get(filter) for player in dict[team]["players"] if player.get("name") == player_name]
+            if player != []:
+                #return player[0]
+                #print(player[0])
+        #return "player not found"
+        #print("player not found")
+    return wrapper
+
+@decorator
+def test(player_name,filter):
+    print("sample")
+
+test("Rui Hachimura","points_per_game")
